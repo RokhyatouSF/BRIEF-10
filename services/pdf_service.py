@@ -31,7 +31,7 @@ class PdfService:
 
         # QR Code (lien vers ton GitHub ou une page fictive)
         qr = qrcode.QRCode(version=1, box_size=10, border=4)
-        qr.add_data("https://github.com/rokhyatou/projet-douta-seck")  # ← change par ton vrai lien
+        qr.add_data("https://github.com/rokhyatou/projet-douta-seck")  
         qr.make(fit=True)
         img_qr = qr.make_image(fill_color="black", back_color="white")
 
