@@ -1,6 +1,3 @@
-# services/reservation_service.py
-# Service complet pour gérer les réservations (CRUD + logique métier)
-
 from models.reservation import Reservation
 from datetime import datetime, timedelta
 
@@ -11,7 +8,7 @@ class ReservationService:
     def est_disponible(self, salle_id: int, debut: datetime, fin: datetime) -> bool:
         """Vérifie si le créneau est libre pour la salle donnée"""
         try:
-            cur = self.db.get_cursor()  # ← Utilise get_cursor() comme dans ta classe Database
+            cur = self.db.get_cursor() 
             cur.execute("""
                 SELECT COUNT(*) as cnt 
                 FROM reservations
