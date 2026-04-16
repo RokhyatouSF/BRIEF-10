@@ -1,4 +1,3 @@
-# services/pdf_service.py
 from reportlab.lib.pagesizes import A4
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, Image
 from reportlab.lib.styles import getSampleStyleSheet
@@ -24,12 +23,10 @@ class PdfService:
         styles = getSampleStyleSheet()
         elements = []
 
-        # En-tête stylé
         elements.append(Paragraph("MAISON DE LA CULTURE DOUTA SECK", styles['Title']))
         elements.append(Paragraph("Avenue Blaise Diagne x Rue 25 – Médina – Dakar", styles['Normal']))
         elements.append(Spacer(1, 0.6*cm))
 
-        # QR Code (lien vers ton GitHub ou une page fictive)
         qr = qrcode.QRCode(version=1, box_size=10, border=4)
         qr.add_data("https://github.com/rokhyatou/projet-douta-seck")  
         qr.make(fit=True)
@@ -43,7 +40,6 @@ class PdfService:
         elements.append(qr_img)
         elements.append(Spacer(1, 0.4*cm))
 
-        # Tableau principal
         data = [
             ["N° Réservation", str(res_data.get('id', '—'))],
             ["Salle", res_data.get('salle_nom', '—')],
