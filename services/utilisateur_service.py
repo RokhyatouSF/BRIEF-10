@@ -19,7 +19,7 @@ class UtilisateurService:
         self.db.commit()
         return cur.lastrowid, "Compte créé"
 
-    # READ
+   
     def get_par_email_mdp(self, email, mdp):
         cur = self.db.cursor()
         cur.execute("""
@@ -32,9 +32,8 @@ class UtilisateurService:
         u = Utilisateur(**row, mdp_hash=row['mdp_hash'])
         return u if u.verifier_mdp(mdp) else None
 
-    # UPDATE (exemple simple)
     def changer_mdp(self, user_id, ancien_mdp, nouveau_mdp):
-        u = self.get_par_id(user_id)  # à implémenter si besoin
+        u = self.get_par_id(user_id)  
         if not u or not u.verifier_mdp(ancien_mdp):
             return False
         hash_nouveau = Utilisateur.hasher(nouveau_mdp)
@@ -43,7 +42,6 @@ class UtilisateurService:
         self.db.commit()
         return True
 
-    # DELETE (soft delete ou réel selon besoin)
     def supprimer_compte(self, user_id):
         cur = self.db.cursor()
         cur.execute("DELETE FROM utilisateurs WHERE id=%s", (user_id,))
